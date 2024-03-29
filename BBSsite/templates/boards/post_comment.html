@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Post comment
+{% endblock title %}
+
+{% block content %}
+<div>
+  <div class="space-y-3">
+    <div class="mx-8 text-xl">Theme: {{theme.title}}</div>
+    <hr>
+    {% for comment in comments %}
+      <div class="mx-14">
+        <div>
+          <span class="underline">Name: {{comment.user.username}}</span>
+        </div>
+        <div class="mx-2">
+          <span>{{comment.content | linebreaksbr}}</span>
+        </div>
+      </div>
+      <hr>
+    {% endfor %}
+  </div>
+
+  <div class="flex justify-end m-5">
+  {% if user.is_authenticated %}
+      <form action="" method="POST" class="flex flex-col">
+        {% csrf_token %}
+        {{form.content}}
+        <div class="flex justify-center m-2 space-x-2">
+          <div id="save-button">
+            {% include 'secondary_button.html' with text='Save'%}
+          </div>
+          {% include 'primary_button.html' with text='Submit'%}
+        </div>
+      </form>
+      {% endif %}
+    </div>
+</div>
+{% endblock content %}
+
+{% block javaScript %}
+  <script>
+    const save_button = document.querySelector('#save-button')
+    const text_area = document.querySelector('#id_content')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    save_button.addEventListener('click', async () => {
+      const postData = {
+          theme_id: "{{theme.id}}",
+          user_id: "{{request.user.id}}",
+          message: text_area.value
+      };
+
+      fetch("{% url 'boards:save_comment' %}", {
+        method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': csrftoken,  // CSRFトークンをヘッダーに追加
+          },
+          body: JSON.stringify(postData)
+      })
+      .then(response => {
+          if (response.ok) {
+              return response.json();
+          }
+          throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+        alert(data['message'])
+      })
+      .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+      });
+    })
+
+  </script>
+{% endblock javaScript %}

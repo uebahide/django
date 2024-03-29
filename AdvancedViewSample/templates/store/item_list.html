@@ -1,0 +1,5 @@
+{% for item in items %}
+  <div>
+    <a href="{% url 'store:item_detail' id=item.id %}">{{item.name}}</a><div>{{item.price}}</div>
+  </div>
+{% endfor %}

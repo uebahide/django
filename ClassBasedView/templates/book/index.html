@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Book Index
+{% endblock title %}
+
+{% block page_name %}
+  Book Index 
+  {{ block.super }}
+{% endblock page_name %}
+
+{% block content %}
+  {% for message in messages%}
+    {{message}}
+  {% endfor %}
+  <form action="" method="POST">
+    {% csrf_token %}
+    {% include 'primary_form.html' with form=form %}
+    {% include 'primary_button.html' with value='Submit'%}
+  </form> 
+{% endblock content %}

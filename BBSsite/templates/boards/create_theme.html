@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Create theme
+{% endblock title %}
+
+{% block content %}
+<div class="flex flex-col justify-center text-center">
+  <form action="" method="POST" class="">
+    {% csrf_token %}
+    {% for message in messages %}
+      <div class="text-center">{{message}}</div>
+    {% endfor %}
+    {% include 'form_erros.html' with form=form %}
+    <div class="space-y-2">
+      <div>{{form.title.label}}</div>
+      <div>{{form.title}}</div>
+    </div>
+
+    <div class="mt-6">
+      {% include 'primary_button.html' with text='Submit' %}
+    </div>
+  </form>
+</div>
+{% endblock content %}

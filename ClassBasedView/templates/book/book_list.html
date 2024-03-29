@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Book List
+{% endblock title %}
+
+{% block page_name %}
+  Book List 
+{% endblock page_name %}
+
+{% block content %}
+<div class="space-y-2">
+  {% for message in messages %}
+    {{message}}
+  {% endfor %}
+  {% for object in object_list %}
+    <div>
+      <div>
+        <div>Title: 
+          <span>
+            <a href="{% url 'store:book_detail' pk=object.pk %}" class="underline text-blue-500 hover:text-blue-600">
+              {{object.title}}
+            </a>
+          </span>
+        </div>
+        <div>Price: {{object.price}}</div>
+      </div>
+    </div>
+    <hr>
+  {% endfor %}
+</div>
+{% endblock content %}

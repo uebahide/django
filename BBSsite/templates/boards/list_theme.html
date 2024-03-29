@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Theme list
+{% endblock title %}
+
+{% block content %}
+  <div class="relative overflow-x-auto">
+    {% for message in messages %}
+      <div class="text-center">{{message}}</div>
+    {% endfor %}
+    <div class="pb-6 pt-4 px-6">
+      <div class="border rounded px-2 py-1 bg-blue-300 hover:bg-blue-400 w-40">
+        <a href="{% url 'boards:create_theme' %}">Create new theme</a>
+      </div>
+    </div>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Title
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    User
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    email
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    email
+                </th>
+                <th scope="col" class="px-6 py-3">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for theme in themes %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <a href="{% url 'boards:post_comment' theme_id=theme.id %}" class="text-blue-400 hover:text-blue-500 underline">{{theme.title}}</a>
+              </th>
+              <td class="px-6 py-4">
+                  {{theme.user.username}}
+              </td>
+              <td class="px-6 py-4">
+                  {{theme.user.email}}
+              </td>
+              <td class="px-6 py-4">
+                {% if theme.user.id == user.id %}
+                  <a href="{% url 'boards:edit_theme' id=theme.id %}">
+                    {% include 'secondary_button.html' with text='Edit'%}
+                  </a>
+                {% else %}
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+  </div>
+{% endblock content %}

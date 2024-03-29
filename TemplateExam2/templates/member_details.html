@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+
+{%block title%}
+member detail 
+{{ block.super }}
+{%endblock%}
+
+{%block content%}
+
+<div>
+  <h1>Member detail</h1>
+  <p>Name: {{member.name}}</p>
+  {% load custom_tags %}
+  {% load static %}
+  <p>Join at {{member.join_at}}</p>
+  <p>Sice joined passed for {{member.join_at|calculate_datetime_to_now}}</p>
+  <img src="{% static member.picture_path %}" alt="">
+</div>
+<a href="{% url 'template_app:members'%}">back</a>
+{%endblock%}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+</head>
+<body>
+  {{student1.name}}:
+  {{student1.student_class.name}}
+  {% for test_results in student1.test_results_set.all %}
+  <div>
+    <div>{{test_results.test.name}}: {{test_results.score}}</div>
+  </div>
+  {% endfor %}
+</body>
+</html>

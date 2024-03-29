@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>{% block title %}
+    
+  {% endblock title %}</title>
+</head>
+<body>
+  <ul class="flex">
+    <li class="mr-6">
+      <a class="text-blue-500 hover:text-blue-800" href="{% url 'store:index' %}">IndexView</a>
+    </li>
+    <li class="mr-6">
+      <a class="text-blue-500 hover:text-blue-800" href="{% url 'store:book_index' %}">BookTemplateView</a>
+    </li>
+    <li class="mr-6">
+      <a class="text-blue-500 hover:text-blue-800" href="{% url 'store:book_list' %}">BookListView</a>
+    </li>
+    <li class="mr-6">
+      <a class="text-blue-500 hover:text-blue-800" href="{% url 'store:book_create' %}">BookCreateView</a>
+    </li>
+  </ul>
+  <div class="text-2xl ml-3">
+    {% block page_name %}
+      page
+    {% endblock page_name %}
+  </div>
+  {% block content %}
+    
+  {% endblock content %}
+</body>
+</html>

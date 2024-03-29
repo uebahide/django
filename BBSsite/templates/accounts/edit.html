@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Edit
+{% endblock title %}
+
+{% block content %}
+<div class="flex flex-col justify-center text-center">
+  <form action="" method="POST" class="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for message in messages %}
+      <div class="text-center">{{message}}</div>
+    {% endfor %}
+    {% include 'form_erros.html' with form=form %}
+    <div class="space-y-2">
+      <div>{{form.username.label}}</div>
+      <div>{{form.username}}</div>
+      <div>{{form.email.label}}</div>
+      <div>{{form.email}}</div>
+      <div>{{form.picture.label}}</div>
+      <div class="flex justify-center">
+        {% if url %}
+        <img src="{{url}}" alt="Image" class="rounded-lg">
+        {% endif %}
+      </div>
+      <div class="flex flex-col items-center justify-center border w-1/4 mx-auto p-2 rounded">{{form.picture}}</div>
+    </div>
+    
+    <div class="mt-4">
+      <a class="text-blue-300 hover:text-blue-500 underline" href="{% url 'accounts:password_edit' %}">Change password</a>
+    </div>
+    <div class="mt-6">
+      {% include 'primary_button.html' with text='Submit' %}
+    </div>
+  </form>
+</div>
+{% endblock content %}

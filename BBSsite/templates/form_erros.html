@@ -1,0 +1,11 @@
+
+{% if form.errors%}
+    <ul class="list-decimal text-red-300">
+        <li>{{ form.non_field_errors }}</li>
+    {% for field in form %}
+        {% for error in field.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% endif %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Create
+{% endblock title %}
+
+{% block content %}
+  {% include './common_form.html' with action='formapp:store' method='POST'%}
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  edit
+{% endblock title %}
+
+{% block content %}
+  {% include './common_form.html' with action='formapp:update'  id=id method="POST" %}
+
+  <div class="flex justify-center">
+    <form action="{% url 'formapp:destroy'%}" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="id" value={{id}}>
+      <button class="border rounded px-2 bg-red-300 mt-6" >Delete</button>
+    </form>
+  </div>
+{% endblock content %}

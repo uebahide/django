@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Delete theme
+{% endblock title %}
+
+{% block content %}
+<div class="flex flex-col justify-center text-center">
+  <div class="text-xl text-red-500">
+    Are you sure to delete this theme?
+  </div>
+  <form action="" method="POST" class="">
+    {% csrf_token %}
+    {% for message in messages %}
+      <div class="text-center">{{message}}</div>
+    {% endfor %}
+    {% include 'form_erros.html' with form=form %}
+    <div class="my-6">
+      {% include 'danger_button.html' with text='Delete' %}
+    </div>
+    <a href="{% url 'boards:edit_theme' id=id%}">
+      {% include 'secondary_button.html' with text='Back'%}
+    </a>
+  </form>
+</div>
+{% endblock content %}

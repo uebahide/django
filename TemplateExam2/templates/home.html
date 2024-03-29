@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+
+{%block title%}
+home
+{{ block.super }}
+{%endblock%}
+
+{%block content%}
+<a href="{% url 'template_app:members'%}">member list</a>
+{%endblock%}

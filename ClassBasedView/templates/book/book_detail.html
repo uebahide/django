@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Book Detail
+{% endblock title %}
+
+{% block page_name %}
+  Book Detail 
+{% endblock page_name %}
+
+{% block content %}
+  <div>
+    <div>
+      <div>Title: {{object.title}}</div>
+      <div>Price: {{object.price}}</div>
+      <div class="underline">Description</div>
+      <div>{{object.description}}</div>
+    </div>
+  </div>
+  <a href="{% url 'store:book_update' pk=object.id %}">
+    {% include 'secondary_button.html' with value='Edit' %}
+  </a>
+  <a href="{% url 'store:book_list' %}" class="underline text-blue-500 hover:text-blue-600">Back</a>
+{% endblock content %}

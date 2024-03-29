@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Register
+{% endblock title %}
+
+{% block content %}
+<div class="flex flex-col justify-center text-center">
+  <form action="" method="POST" class="">
+    {% csrf_token %}
+    {% include 'form_erros.html' with form=form %}
+    <div class="space-y-2">
+      <div>{{form.username.label}}</div>
+      <div>{{form.username}}</div>
+      <div>{{form.email.label}}</div>
+      <div>{{form.email}}</div>
+      <div>{{form.password.label}}</div>
+      <div>{{form.password}}</div>
+      <div>{{form.confirm_password.label}}</div>
+      <div>{{form.confirm_password}}</div>
+    </div>
+
+    <div class="mt-6">
+      {% include 'primary_button.html' with text='Submit' %}
+    </div>
+  </form>
+</div>
+{% endblock content %}

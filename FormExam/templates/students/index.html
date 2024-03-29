@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Index
+{% endblock title %}
+
+{% block content %}
+<div class="my-10 flex justify-center">
+  <a class="border rounded bg-green-300 p-2" href="{% url 'formapp:create' %}">create new student</a>
+</div>
+<div class="my-10 flex justify-center">
+  <a class="border rounded bg-green-300 p-2" href="{% url 'formapp:create_set' %}">create 3 students</a>
+</div>
+
+<div class="space-y-4">
+  {% for student in students %}
+    <div class="border rounded-lg w-1/2 mx-auto p-2">
+      <div>{{student.name}}</div>
+      <div>{{student.student_class.name}}</div>
+      <div>{{student.grade}}</div>
+      <img src="{{student.picture.url}}" alt="">
+      <div class="flex justify-center mt-3">
+        <a class="border rounded bg-gray-300 px-2" href="{% url 'formapp:edit' id=student.id %}">
+          edit
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock content %}

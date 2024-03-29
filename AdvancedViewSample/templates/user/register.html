@@ -1,0 +1,19 @@
+{% extends './base.html' %}
+
+{% block title %}
+  Register
+{% endblock title %}
+
+{% block content %}
+<form action="" method='POST' class="flex justify-center flex-col space-y-4" enctype="multipart/form-data">
+  <div class="text-center mt-10">Register form</div>
+  {% csrf_token %}
+  <table class="bg-gray-300 rounded w-2/5 mx-auto">
+    {{ user_form.as_table }}
+    {{ profile_form.as_table }}
+  </table>
+  <div class="flex justify-center">
+    <button class="border rounded-lg px-2 bg-green-300">Submit</button>
+  </div>
+</form>
+{% endblock content %}

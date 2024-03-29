@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  member list {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+{% load static %}
+{% load custom_tags %}
+  <div class="border roudned bg-gray-200 w-1/2 rounded-lg items-center mx-auto flex flex-col justify-center mt-20 p-6">
+    <p>{{member.name}}</p>
+    <p>{{member.join_at|time_since_joined}}</p>
+    <img src="{% static member.picture_path %}" alt="">
+  </div>
+  <div class="flex flex-col mx-auto m-2 space-y-1">
+    <div class="flex justify-center">
+      <a class="text-center border roudned bg-gray-200 rounded" href="{% url 'template_app:members' %}">Member lsit</a>
+    </div>
+    <div class="flex justify-center">
+      <a class="text-center border roudned bg-gray-200 rounded" href="{% url 'template_app:home' %}">Home</a>
+    </div>
+  </div>
+{% endblock content %}

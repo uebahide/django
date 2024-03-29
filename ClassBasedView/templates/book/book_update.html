@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Book Update
+{% endblock title %}
+
+{% block page_name %}
+  Book Update 
+  {{ block.super }}
+{% endblock page_name %}
+
+{% block content %}
+  {% for message in messages%}
+    {{message}}
+  {% endfor %}
+  <form action="" method="POST">
+    {% csrf_token %}
+    {% include 'primary_form.html' with form=form %}
+    {% include 'primary_button.html' with value='Submit'%}
+  </form> 
+  <a href="{% url 'store:book_delete' pk=object.pk %}" class="underline">Delete</a>
+{% endblock content %}

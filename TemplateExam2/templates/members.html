@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+
+{%block title%}
+members list
+{{ block.super }}
+{%endblock%}
+
+{%block content%}
+<ul>
+  {% for member in members %}
+  <li>
+    <a href="{% url 'template_app:member_details' id=member.id %}">{{member.name}}</a>
+  </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'template_app:home' %}">Home</a>
+{%endblock%}
+  

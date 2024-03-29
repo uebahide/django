@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  member list {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<div class="flex flex-col underline text-blue-500">
+  {% for member in members %}
+    <a href="{% url 'template_app:member_details' id=member.id %}">{{member.name}}</a>
+  {% endfor %}
+</div>
+<div>
+  <a class="border rounded bg-gray-100 px-2 py-1" href="{% url 'template_app:home' %}">Home</a>
+</div>
+{% endblock content %}
+  
